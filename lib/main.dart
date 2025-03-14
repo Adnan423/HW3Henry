@@ -20,3 +20,26 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class CardModel {
+  final int id;
+  final String value;
+  bool isFaceUp;
+  bool isMatched;
+
+  CardModel({
+    required this.id,
+    required this.value,
+    this.isFaceUp = false,
+    this.isMatched = false,
+  });
+}
+
+class GameProvider with ChangeNotifier {
+  List<CardModel> _cards = [];
+  CardModel? _firstSelected;
+  CardModel? _secondSelected;
+
+  GameProvider() {
+    _initializeGame();
+  }
