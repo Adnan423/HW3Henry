@@ -115,3 +115,29 @@ class CardMatchingGame extends StatelessWidget {
     );
   }
 }
+
+class CardWidget extends StatelessWidget {
+  final CardModel card;
+
+  CardWidget({required this.card});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Provider.of<GameProvider>(context, listen: false).flipCard(card),
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Center(
+          child: Text(
+            card.isFaceUp ? card.value : '❓',
+            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+    );
+  }
+}
